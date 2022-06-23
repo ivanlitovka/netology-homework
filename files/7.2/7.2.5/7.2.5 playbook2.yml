@@ -1,0 +1,22 @@
+- name: Zadanie 5.2
+  hosts: vm2
+  become: yes
+
+  tasks:
+
+
+  - name: Update cache
+    apt:
+     update_cache: yes
+
+
+  - name: install tuned
+    apt:
+      name: tuned
+      state: latest
+
+  - name: Tuned autoload enable
+    service:
+      name: tuned
+      state: started
+      enabled: yes
