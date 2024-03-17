@@ -1,0 +1,14 @@
+Ритейл
+
+#1 - WEb Application Firewall дял защиты публикуемых ресурсов
+#2 - IDS/IPS 
+#3 - NGFW - для контроля трафика вплоть до уровня L7 
+
+Промышленость
+
+#1 - Firewall
+#2 - Network ANtiwirus, или почтовый шлюз с функциями антивируса и определения спама
+#3 - Network ANtiwirus
+#4 - Proxy Server
+#5 - Firewall
+#6 - Antivirus
