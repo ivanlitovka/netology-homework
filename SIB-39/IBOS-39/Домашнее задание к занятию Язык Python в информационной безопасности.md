@@ -17,17 +17,15 @@
 import nmap3
 
 nmap = nmap3.Nmap()
-result = nmap.nmap_version_detection("192.168.31.135")
-for i in result["192.168.31.135"]["ports"]:
-	print(i["protocol"], i["portid"], i["state"], i["service"]["name"], i["service"]["version"])
+result = nmap.nmap_version_detection("192.168.3.110")
+for i in result["192.168.3.110"]["ports"]:
+	print(i["protocol"], i["portid"], i["state"], i["service"]["name"], i["service"].get("version"))
 	
-┌──(ivan㉿kali)-[~]
-└─$ sudo python3 nmap.py
-tcp 21 open ftp 2.3.4
-tcp 22 open ssh 4.7p1 Debian 8ubuntu1
-Traceback (most recent call last):
-  File "/home/ivan/nmap.py", line 6, in <module>
-    print(i["protocol"], i["portid"], i["state"], i["service"]["name"], i["service"]["version"])
+/usr/local/bin/python3.9 /Users/ivanlitovka/Documents/netology-homework/SIB-39/IBOS-39/files/nmap.py 
+tcp 22 open ssh 8.9p1 Ubuntu 3ubuntu0.4
+tcp 80 open http 2.4.52
+
+Process finished with exit code 0
                                                                         ~~~~~~~~~~~~^^^^^^^^^^^
 
 

@@ -2,3 +2,4 @@
 *.pyc
 **/cache
 **/SYS-9
+**/.idea
