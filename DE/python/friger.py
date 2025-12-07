@@ -21,10 +21,10 @@ def add(items, title, amount, expiration_date=None):
     })
 
 def add_by_note(items, note):
-
+    ...
 # Добавляем продукт с названием 'Яйца', количество - 10 шт.
 add(goods, 'Яйца', Decimal('10'), '2023-9-30')
-add(goods, 'Яйца', Decimal('3'), '2023-10-15')
+add(goods, 'Яйца', Decimal('3'), '2025-12-15')
 add(goods, 'Вода', Decimal('2.5'))
 add_by_note(goods, 'Яйца гусиные 4 2023-07-15')
 print(goods)
