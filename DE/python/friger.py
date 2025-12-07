@@ -21,7 +21,12 @@ def add(items, title, amount, expiration_date=None):
     })
 
 def add_by_note(items, note):
-    ...
+    note = note.split(' ')
+    if len(note[-1]) != 10:
+        expiration_date = None
+
+
+
 # Добавляем продукт с названием 'Яйца', количество - 10 шт.
 add(goods, 'Яйца', Decimal('10'), '2023-9-30')
 add(goods, 'Яйца', Decimal('3'), '2025-12-15')
