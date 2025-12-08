@@ -1,10 +1,10 @@
 import datetime as dt
 from decimal import Decimal
 
-
 DATE_FORMAT = '%Y-%m-%d'
 # Холодильник пуст:
 goods = {}
+
 
 # Код, который добавляет продукты в словарь goods.
 
@@ -20,6 +20,7 @@ def add(items, title, amount, expiration_date=None):
         'expiration_date': expiration_date
     })
 
+
 def add_by_note(items, note):
     note = note.split(' ')
     if len(note[-1]) != 10:
@@ -31,25 +32,26 @@ def add_by_note(items, note):
         title = ' '.join(note[:-2])
         add(items, title, Decimal(note[-2]), expiration_date)
 
+
 def find(items, needle):
     list = []
     for item in items:
         if needle.lower() in item.lower():
             list.append(item)
-    if len(list) == 0:
-        return 'Ничего не найдено'
     else:
         return list
 
+
 def amount(items, needle):
+    total = Decimal(0)
+    needle_lower = needle.lower()
+
     for item in items:
-        if needle.lower() == item.lower():
-            summ = 0
+        if needle_lower in item.lower():
             for product in items[item]:
-                summ += product['amount']
-            return summ
-        else:
-            return f'Продукт {needle} не найден'
+                total += product['amount']
+
+    return total
 
 
 def expire(items, in_advance_days=0):
@@ -73,13 +75,12 @@ def expire(items, in_advance_days=0):
     return list(result.items())
 
 
-
 # Добавляем продукт с названием 'Яйца', количество - 10 шт.
 add(goods, 'Яйца', Decimal('10'), '2023-9-30')
 add(goods, 'Яйца', Decimal('3'), '2025-12-08')
 add(goods, 'Вода', Decimal('2.5'))
 add(goods, 'Колбаса', Decimal('5'), '2025-12-7')  # Должен попасть в результат
-add(goods, 'Колбаса', Decimal('2'), '2025-12-9')  # Не должен попасть
+add(goods, 'Колбаса', Decimal('2'), '2025-12-17')  # Не должен попасть
 add(goods, 'Колбаса', Decimal('4'), None)
 add_by_note(goods, 'Яйца гусиные 4 2023-07-15')
 add_by_note(goods, 'Хвосты мышиные 5')
@@ -88,5 +89,5 @@ print(find(goods, 'йц'))
 print(amount(goods, 'яйца'))
 print(amount(goods, 'морковь'))
 print(expire(goods))
-print(expire(goods,1))
+print(expire(goods, 1))
 print(expire(goods, 2))
