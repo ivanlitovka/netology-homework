@@ -31,7 +31,15 @@ def add_by_note(items, note):
         title = ' '.join(note[:-2])
         add(items, title, Decimal(note[-2]), expiration_date)
 
-
+def find(items, needle):
+    list = []
+    for item in items:
+        if needle.lower() in item.lower():
+            list.append(item)
+    if len(list) == 0:
+        return 'Ничего не найдено'
+    else:
+        return list
 
 
 # Добавляем продукт с названием 'Яйца', количество - 10 шт.
@@ -41,3 +49,4 @@ add(goods, 'Вода', Decimal('2.5'))
 add_by_note(goods, 'Яйца гусиные 4 2023-07-15')
 add_by_note(goods, 'Хвосты мышиные 5')
 print(goods)
+print(find(goods, 'йц'))
