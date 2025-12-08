@@ -38,8 +38,7 @@ def find(items, needle):
     for item in items:
         if needle.lower() in item.lower():
             list.append(item)
-    else:
-        return list
+    return list
 
 
 def amount(items, needle):
