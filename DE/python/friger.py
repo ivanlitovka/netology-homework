@@ -41,6 +41,15 @@ def find(items, needle):
     else:
         return list
 
+def amount(items, needle):
+    for item in items:
+        if needle.lower() == item.lower():
+            summ = 0
+            for product in items[item]:
+                summ += product['amount']
+            return summ
+        else:
+            return f'Продукт {needle} не найден'
 
 # Добавляем продукт с названием 'Яйца', количество - 10 шт.
 add(goods, 'Яйца', Decimal('10'), '2023-9-30')
@@ -50,3 +59,5 @@ add_by_note(goods, 'Яйца гусиные 4 2023-07-15')
 add_by_note(goods, 'Хвосты мышиные 5')
 print(goods)
 print(find(goods, 'йц'))
+print(amount(goods, 'яйца'))
+print(amount(goods, 'морковь'))
