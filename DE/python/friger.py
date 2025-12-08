@@ -51,13 +51,42 @@ def amount(items, needle):
         else:
             return f'Продукт {needle} не найден'
 
+
+def expire(items, in_advance_days=0):
+    current_date = dt.datetime.now().date()
+    result = {}  # Используем словарь для накопления сумм
+
+    for item_key, item_list in items.items():
+        for product in item_list:
+            expiration_date = product.get('expiration_date')
+            if expiration_date is None:
+                continue
+
+            target_date = current_date + dt.timedelta(days=in_advance_days)
+
+            if expiration_date <= target_date:
+                if item_key not in result:
+                    result[item_key] = Decimal('0')
+                result[item_key] += product['amount']
+
+    # Преобразуем словарь в список кортежей
+    return list(result.items())
+
+
+
 # Добавляем продукт с названием 'Яйца', количество - 10 шт.
 add(goods, 'Яйца', Decimal('10'), '2023-9-30')
-add(goods, 'Яйца', Decimal('3'), '2025-12-15')
+add(goods, 'Яйца', Decimal('3'), '2025-12-08')
 add(goods, 'Вода', Decimal('2.5'))
+add(goods, 'Колбаса', Decimal('5'), '2025-12-7')  # Должен попасть в результат
+add(goods, 'Колбаса', Decimal('2'), '2025-12-9')  # Не должен попасть
+add(goods, 'Колбаса', Decimal('4'), None)
 add_by_note(goods, 'Яйца гусиные 4 2023-07-15')
 add_by_note(goods, 'Хвосты мышиные 5')
 print(goods)
 print(find(goods, 'йц'))
 print(amount(goods, 'яйца'))
 print(amount(goods, 'морковь'))
+print(expire(goods))
+print(expire(goods,1))
+print(expire(goods, 2))
