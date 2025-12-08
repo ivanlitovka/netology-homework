@@ -24,6 +24,13 @@ def add_by_note(items, note):
     note = note.split(' ')
     if len(note[-1]) != 10:
         expiration_date = None
+        title = ' '.join(note[:-1])
+        add(items, title, Decimal(note[-1]), expiration_date)
+    else:
+        expiration_date = note[-1]
+        title = ' '.join(note[:-2])
+        add(items, title, Decimal(note[-2]), expiration_date)
+
 
 
 
@@ -32,4 +39,5 @@ add(goods, 'Яйца', Decimal('10'), '2023-9-30')
 add(goods, 'Яйца', Decimal('3'), '2025-12-15')
 add(goods, 'Вода', Decimal('2.5'))
 add_by_note(goods, 'Яйца гусиные 4 2023-07-15')
+add_by_note(goods, 'Хвосты мышиные 5')
 print(goods)
