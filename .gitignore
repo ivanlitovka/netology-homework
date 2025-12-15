@@ -4,3 +4,4 @@
 **/SYS-9
 **/.idea
 **/venv
+**/__pycache__
